@@ -49,6 +49,14 @@
 
       <div class="card my-2">
         <div class="card-body">
+          <h5 class="card-titled">daifuku</h5>
+          <button class="btn btn-light" id="">kashiwa/pull</button>
+          <button class="btn btn-light" id="">mochi/pull</button>
+        </div>
+      </div>
+
+      <div class="card my-2">
+        <div class="card-body">
           <h5 class="card-titled">雑多</h5>
           <button class="btn btn-light" id="">何もない</button>
         </div>
@@ -63,8 +71,19 @@
   $('#toggle').on('click', function() {
     $.get(`${apiUrl}/toggle`)
   })
+
   $('.btn-playlist').on('click', function(d) {
     const pl = $(d.target).text()
     $.get(`${apiUrl}/playlist/select`, {param: pl})
   })
+
+  $('#mochi-pull').on('click', function() {
+    $.post('${apiUrl}/daifuku/mochi/pull')
+  })
+
+  $('#kashiwa-pull').on('click', function() {
+    $.post('${apiUrl}/daifuku/kashiwa/pull')
+  })
+
 </script>
+
