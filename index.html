@@ -67,22 +67,22 @@
 
 
 <script>
-  const apiUrl = 'http://192.168.10.101:5000/api'
+  const apiUrl = 'http://192.168.10.101:5000/'
   $('#toggle').on('click', function() {
-    $.get(`${apiUrl}/toggle`)
+    $.get(`${apiUrl}/api/toggle`)
   })
 
   $('.btn-playlist').on('click', function(d) {
     const pl = $(d.target).text()
-    $.get(`${apiUrl}/playlist/select`, {param: pl})
+    $.get(`${apiUrl}/api/playlist/select`, {param: pl})
   })
 
   $('#mochi-pull').on('click', function() {
-    $.post('${apiUrl}/daifuku/mochi/pull')
+    $.post(`${apiUrl}/daifuku/mochi/pull`)
   })
 
   $('#kashiwa-pull').on('click', function() {
-    $.post('${apiUrl}/daifuku/kashiwa/pull')
+    $.post(`${apiUrl}/daifuku/kashiwa/pull`)
   })
 
 </script>
