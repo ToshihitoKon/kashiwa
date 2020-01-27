@@ -33,14 +33,31 @@
 
       <div class="card my-2">
         <div class="card-body">
-          <h5 class="card-titled">操作</h5>
+          <h5 class="card-title">操作</h5>
+
           <button class="btn btn-light" id="toggle">toggle</button>
+          <button class="btn btn-light" id="next">next</button>
+          <button class="btn btn-light" id="prev">prev</button>
+
+          <div class="card mt-3">
+            <div class="card-titled">
+            </div>
+            <div class="card-body">
+              <p class="card-title" id="display-volume">volume</p>
+              <input
+                type="range"
+                class="custom-range"
+                id="volume"
+                min="0" max="99"/>
+            </div>
+          </div>
+
         </div>
       </div>
 
       <div class="card my-2">
         <div class="card-body">
-          <h5 class="card-titled">プレイリスト</h5>
+          <h5 class="card-title">プレイリスト</h5>
           <button class="btn btn-light btn-playlist">suimin</button>
           <button class="btn btn-light btn-playlist">yoi</button>
           <button class="btn btn-light btn-playlist">saikyo</button>
@@ -49,7 +66,7 @@
 
       <div class="card my-2">
         <div class="card-body">
-          <h5 class="card-titled">daifuku</h5>
+          <h5 class="card-title">daifuku</h5>
           <button class="btn btn-light" id="mochi-pull">mochi/pull</button>
           <button class="btn btn-light" id="kashiwa-pull">kashiwa/pull</button>
         </div>
@@ -57,7 +74,7 @@
 
       <div class="card my-2">
         <div class="card-body">
-          <h5 class="card-titled">雑多</h5>
+          <h5 class="card-title">雑多</h5>
           <button class="btn btn-light" id="">何もない</button>
         </div>
       </div>
@@ -69,7 +86,16 @@
 <script>
   const apiUrl = 'http://192.168.10.101:5000'
   $('#toggle').on('click', function() {
-    $.get(`${apiUrl}/api/toggle`)
+    $.post(`${apiUrl}/api/toggle`)
+  })
+  $('#next').on('click', function() {
+    $.post(`${apiUrl}/api/next`)
+  })
+  $('#prev').on('click', function() {
+    $.post(`${apiUrl}/api/prev`)
+  })
+  $('#volume').on('input change', function(){
+    $('#display-volume').html('valume: ' + $(this).val())
   })
 
   $('.btn-playlist').on('click', function(d) {
