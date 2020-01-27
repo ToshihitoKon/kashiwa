@@ -94,8 +94,12 @@
   $('#prev').on('click', function() {
     $.post(`${apiUrl}/api/prev`)
   })
-  $('#volume').on('input change', function(){
-    $('#display-volume').html('valume: ' + $(this).val())
+
+  $('#volume').on('input', function(){
+    $('#display-volume').html('volume: ' + $(this).val())
+  })
+  $('#volume').on('change', function(){
+    $.get(`${apiUrl}/api/volume`, {num: $(this).val()})
   })
 
   $('.btn-playlist').on('click', function(d) {
