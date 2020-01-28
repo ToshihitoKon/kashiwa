@@ -105,17 +105,17 @@
   })
 
   $('#toggle').on('click', function() {
-    $.post(`${apiUrl}/api/toggle`, null, displayResponse)
+    $.post(`${apiUrl}/api/toggle`, null, setMusicStatus)
   })
   $('#next').on('click', function() {
-    $.post(`${apiUrl}/api/next`,null, displayResponse)
+    $.post(`${apiUrl}/api/next`,null, setMusicStatus)
   })
   $('#prev').on('click', function() {
-    $.post(`${apiUrl}/api/prev`,null, displayResponse)
+    $.post(`${apiUrl}/api/prev`,null, setMusicStatus)
   })
 
   $('#volume').on('input', function(){
-    $('#display-volume').html('volume: ' + $(this).val(),displayResponse)
+    $('#display-volume').html(`volume: ${$(this).val()}`)
   })
   $('#volume').on('change', function(){
     $.get(`${apiUrl}/api/volume`, {num: $(this).val()},displayResponse)
