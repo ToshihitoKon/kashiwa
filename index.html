@@ -78,6 +78,7 @@
           <button class="btn btn-light" id="">何もない</button>
         </div>
       </div>
+      <div class="card card-body mt-3" id="response"></div>
     </div>
   </body>
 </html>
@@ -85,34 +86,39 @@
 
 <script>
   const apiUrl = 'http://192.168.10.101:5000'
+
+  displayResponse = (data) => {
+      $('#response').html(data)
+  }
+
   $('#toggle').on('click', function() {
-    $.post(`${apiUrl}/api/toggle`)
+    $.post(`${apiUrl}/api/toggle`, null, displayResponse)
   })
   $('#next').on('click', function() {
-    $.post(`${apiUrl}/api/next`)
+    $.post(`${apiUrl}/api/next`,null, displayResponse)
   })
   $('#prev').on('click', function() {
-    $.post(`${apiUrl}/api/prev`)
+    $.post(`${apiUrl}/api/prev`,null, displayResponse)
   })
 
   $('#volume').on('input', function(){
-    $('#display-volume').html('volume: ' + $(this).val())
+    $('#display-volume').html('volume: ' + $(this).val(),displayResponse)
   })
   $('#volume').on('change', function(){
-    $.get(`${apiUrl}/api/volume`, {num: $(this).val()})
+    $.get(`${apiUrl}/api/volume`, {num: $(this).val()},displayResponse)
   })
 
   $('.btn-playlist').on('click', function(d) {
     const pl = $(d.target).text()
-    $.get(`${apiUrl}/api/playlist/select`, {param: pl})
+    $.get(`${apiUrl}/api/playlist/select`, {param: pl},displayResponse)
   })
 
   $('#mochi-pull').on('click', function() {
-    $.post(`${apiUrl}/daifuku/mochi/pull`)
+    $.post(`${apiUrl}/daifuku/mochi/pull`,null, displayResponse)
   })
 
   $('#kashiwa-pull').on('click', function() {
-    $.post(`${apiUrl}/daifuku/kashiwa/pull`)
+    $.post(`${apiUrl}/daifuku/kashiwa/pull`,null, displayResponse)
   })
 
 </script>
