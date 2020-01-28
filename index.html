@@ -33,7 +33,9 @@
 
       <div class="card my-2">
         <div class="card-body">
-          <h5 class="card-title">操作</h5>
+          <h5 class="card-title">音楽</h5>
+          <h6 class="card-subtitle my-2">nowplaying</h6>
+          <p id="displaySong"></p>
 
           <button class="btn btn-light" id="toggle">toggle</button>
           <button class="btn btn-light" id="next">next</button>
@@ -90,6 +92,17 @@
   displayResponse = (data) => {
       $('#response').html(data)
   }
+
+  setMusicStatus = (data) => {
+    const status = JSON.parse(data)
+    $('#displaySong').html(`${status.title} / ${status.artist}` )
+    $('#display-volume').html(`volume: ${status.volume}`)
+    $('#volume').val(status.volume)
+  }
+
+  $(document).ready(function() {
+    $.post(`${apiUrl}/api/status`, null, setMusicStatus)
+  })
 
   $('#toggle').on('click', function() {
     $.post(`${apiUrl}/api/toggle`, null, displayResponse)
