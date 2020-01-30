@@ -91,7 +91,7 @@
     <div class="pos-f-b">
       <nav class="navbar navbar-dark bg-dark">
         <p class="text-light" id="versionMochi">mochi</p>
-        <p class="text-light" id="versionKashiwa">mochi</p>
+        <p class="text-light" id="versionKashiwa">kashiwa</p>
       </nav>
     </div>
   </body>
@@ -119,7 +119,7 @@
       const status = JSON.parse(data)
       $('#versionMochi').html(`mochi: ${status.stdout}`)
     })
-    $.post(`${apiUrl}/daifuku/kashiwa/version`, null, (v) => {
+    $.post(`${apiUrl}/daifuku/kashiwa/version`, null, (data) => {
       const status = JSON.parse(data)
       $('#versionKashiwa').html(`kashiwa: ${status.stdout}`)
     })
