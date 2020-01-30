@@ -18,9 +18,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebartoggle">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="container">
-          <span class="navbar-brand">Kashiwa</span>
-        </div>
+        <span class="navbar-brand">Kashiwa</span>
         <!-- メニュー -->
         <div id="sidebartoggle" class="collapse navbar-collapse">
           <span class="navbar-text">穢土転生</span>
@@ -88,6 +86,14 @@
       </div>
       <div class="card card-body mt-3" id="response"></div>
     </div>
+
+    <!-- フッダー -->
+    <div class="pos-f-b">
+      <nav class="navbar navbar-dark bg-dark">
+        <p class="text-light" id="versionMochi">mochi</p>
+        <p class="text-light" id="versionKashiwa">mochi</p>
+      </nav>
+    </div>
   </body>
 </html>
 
@@ -109,6 +115,12 @@
 
   $(document).ready(function() {
     $.post(`${apiUrl}/api/status`, null, setMusicStatus)
+    $.post(`${apiUrl}/mochi/version`, null, (v) => {
+      $('#versionMochi').html(`mochi: ${v}`)
+    })
+    $.post(`${apiUrl}/kashiwa/version`, null, (v) => {
+      $('#versionKashiwa').html(`kashiwa: ${v}`)
+    })
   })
 
   $('#status').on('click', function() {
