@@ -36,10 +36,16 @@
           <h5 class="card-title">音楽</h5>
           <h6 class="card-subtitle my-2">nowplaying</h6>
           <p id="displaySong"></p>
+          <p id="displayIsSleepTimer"></p>
 
+          <button class="btn btn-light" id="status">status</button>
           <button class="btn btn-light" id="toggle">toggle</button>
           <button class="btn btn-light" id="next">next</button>
           <button class="btn btn-light" id="prev">prev</button>
+          <button class="btn btn-light" id="sleep">sleep</button>
+          <button class="btn btn-light" id="sleepCancel">sleep cancel</button>
+          <button class="btn btn-light" id="playlistLs">playlists</button>
+          <button class="btn btn-light" id="playlistList">current cue</button>
 
           <div class="card mt-3">
             <div class="card-titled">
@@ -96,14 +102,18 @@
   setMusicStatus = (data) => {
     const status = JSON.parse(data)
     $('#displaySong').html(`${status.title} / ${status.artist}` )
-    $('#display-volume').html(`volume: ${status.volume}`)
     $('#volume').val(status.volume)
+    $('#displayIsSleepTimer').html(`sleep: ${status.isSleepTimer}`)
+    $('#display-volume').html(`volume: ${status.volume}`)
   }
 
   $(document).ready(function() {
     $.post(`${apiUrl}/api/status`, null, setMusicStatus)
   })
 
+  $('#status').on('click', function() {
+    $.post(`${apiUrl}/api/status`, null, setMusicStatus)
+  })
   $('#toggle').on('click', function() {
     $.post(`${apiUrl}/api/toggle`, null, setMusicStatus)
   })
@@ -112,6 +122,18 @@
   })
   $('#prev').on('click', function() {
     $.post(`${apiUrl}/api/prev`,null, setMusicStatus)
+  })
+  $('#sleep').on('click', function() {
+    $.post(`${apiUrl}/api/sleepTimer`,null, setMusicStatus)
+  })
+  $('#sleepCancel').on('click', function() {
+    $.post(`${apiUrl}/api/cancelSleepTimer`,null, setMusicStatus)
+  })
+  $('#playlistLs').on('click', function() {
+    $.post(`${apiUrl}/api/playlist/ls`,null, displayResponse)
+  })
+  $('#playlistList').on('click', function() {
+    $.post(`${apiUrl}/api/playlist/list`,null, displayResponse)
   })
 
   $('#volume').on('input', function(){
