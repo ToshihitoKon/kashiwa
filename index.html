@@ -121,7 +121,7 @@
     })
     $.post(`${apiUrl}/daifuku/kashiwa/version`, null, (v) => {
       const status = JSON.parse(data)
-      $('#versionMochi').html(`kashiwa: ${status.stdout}`)
+      $('#versionKashiwa').html(`kashiwa: ${status.stdout}`)
     })
   })
 
