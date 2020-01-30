@@ -115,11 +115,13 @@
 
   $(document).ready(function() {
     $.post(`${apiUrl}/api/status`, null, setMusicStatus)
-    $.post(`${apiUrl}/mochi/version`, null, (v) => {
-      $('#versionMochi').html(`mochi: ${v}`)
+    $.post(`${apiUrl}/daifuku/mochi/version`, null, (data) => {
+      const status = JSON.parse(data)
+      $('#versionMochi').html(`mochi: ${status.stdout}`)
     })
-    $.post(`${apiUrl}/kashiwa/version`, null, (v) => {
-      $('#versionKashiwa').html(`kashiwa: ${v}`)
+    $.post(`${apiUrl}/daifuku/kashiwa/version`, null, (v) => {
+      const status = JSON.parse(data)
+      $('#versionMochi').html(`kashiwa: ${status.stdout}`)
     })
   })
 
