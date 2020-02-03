@@ -3,5 +3,5 @@
 cd `dirname $0`
 
 git pull origin master
-npm install
+npm ci
 npm run build
