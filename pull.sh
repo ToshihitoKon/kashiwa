@@ -3,5 +3,3 @@
 cd `dirname $0`
 
 git pull origin master
-npm ci
-npm run build
