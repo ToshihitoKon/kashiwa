@@ -3,4 +3,5 @@
 cd `dirname $0`
 
 git pull origin master
-# systemctl restrt mochi
+npm install
+npm run build
