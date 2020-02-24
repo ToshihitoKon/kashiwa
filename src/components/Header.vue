@@ -4,10 +4,10 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebartoggle">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <span class="navbar-brand">Kashiwa</span>
+        <router-link to='/' class="navbar-brand">Kashiwa</router-link>
         <!-- メニュー -->
         <div id="sidebartoggle" class="collapse navbar-collapse">
-      <span class="navbar-text">穢土転生</span>
+      <router-link to='/music' class="navbar-text">music</router-link>
       </div>
     </nav>
   </div>
