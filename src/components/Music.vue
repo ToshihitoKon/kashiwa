@@ -2,51 +2,65 @@
   <div class="container mt-4">
     <div class="card my-2">
       <div class="card-body">
-        <h5 class="card-title">音楽</h5>
-        <h6 class="card-subtitle my-2">nowplaying</h6>
+        <h6 class="card-title">status</h6>
+        <p class="card-subtitle my-2">nowplaying</p>
         <p>{{ musicStatus.title }} / {{ musicStatus.artist }}</p>
         <p>{{ sleepTimer }}</p>
+      </div>
+    </div>
 
+    <div class="card my-2">
+      <div class="card-body">
+        <h6 class="card-title">操作盤</h6>
         <button
           class="btn btn-light"
           v-on:click="getMusicStatus">
             status
         </button>
-        <button class="btn btn-light">toggle</button>
-        <button class="btn btn-light">next</button>
-        <button class="btn btn-light">prev</button>
-        <button class="btn btn-light">sleep</button>
-        <button class="btn btn-light">sleep cancel</button>
-        <button class="btn btn-light">playlists</button>
+        <button
+          class="btn btn-light"
+          v-on:click="toggle">
+            toggle
+        </button>
+        <button
+          class="btn btn-light"
+          v-on:click="next">
+            next
+        </button>
+        <button
+          class="btn btn-light"
+          v-on:click="prev">
+            prev
+        </button>
+      </div>
+    </div>
 
-        <div class="card mt-3">
-          <div class="card-body">
-            <p class="card-title">volume: {{ musicStatus.volume }}</p>
-            <input
-              type="range"
-              class="custom-range"
-              v-model="musicStatus.volume"
-              v-on:change="postMusicVolume"
-              min="0" max="99"/>
-          </div>
-        </div>
-        <div class="card mt-3">
-          <div class="card-titled">
-          </div>
-          <div class="card-body">
-            <span class="card-title">queue list</span>
-            <button
-              class="btn btn-light"
-              v-on:click="getMusicQueueList">load</button>
-            <details>
-              <ul>
-                <li v-for="song in queue" v-bind:key="song">
-                  {{ song }}
-                </li>
-              </ul>
-            </details>
-          </div>
-        </div>
+    <div class="card my-2">
+      <div class="card-body">
+        <h6 class="card-title">volume: {{ musicStatus.volume }}</h6>
+        <input
+          type="range"
+          class="custom-range"
+          v-model="musicStatus.volume"
+          v-on:change="postMusicVolume"
+          min="0" max="99"/>
+      </div>
+    </div>
+
+    <div class="card my-2">
+      <div class="card-body">
+        <h6 class="card-title">quque list</h6>
+        <button
+          class="btn btn-light"
+          v-on:click="getMusicQueueList">load
+        </button>
+        <details>
+          <ul>
+            <li v-for="song in queue" v-bind:key="song">
+              {{ song }}
+            </li>
+          </ul>
+        </details>
       </div>
     </div>
   </div>
@@ -85,12 +99,13 @@ export default {
       }
     },
     getMusicStatus: function () {
-      Axios.post(`${this.apiUrl}/api/status`)
+      Axios.get(`${this.apiUrl}/api/status`)
         .then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))
     },
     postMusicVolume: function () {
+      // TODO: POST対応する
       Axios.get(`${this.apiUrl}/api/volume`, {
         params:{
           'num': this.musicStatus.volume
@@ -102,9 +117,27 @@ export default {
         }.bind(this))
     },
     getMusicQueueList: function () {
-      Axios.post(`${this.apiUrl}/api/playlist/list`)
+      Axios.get(`${this.apiUrl}/api/playlist/list`)
         .then(function(res){
           this.queue = res.data
+        }.bind(this))
+    },
+    toggle: function () {
+      Axios.post(`${this.apiUrl}/api/toggle`)
+        .then(function(res){
+          this.setMusicStatus(res.data)
+        }.bind(this))
+    },
+    next: function () {
+      Axios.post(`${this.apiUrl}/api/next`)
+        .then(function(res){
+          this.setMusicStatus(res.data)
+        }.bind(this))
+    },
+    prev: function () {
+      Axios.post(`${this.apiUrl}/api/prev`)
+        .then(function(res){
+          this.setMusicStatus(res.data)
         }.bind(this))
     },
   }
