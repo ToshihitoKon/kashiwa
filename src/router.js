@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Top from '@/components/Top'
 import Music from '@/components/Music'
+import Daifuku from '@/components/Daifuku'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,10 @@ const routes = [
   {
     path: '/music',
     component: Music
+  },
+  {
+    path: '/daifuku',
+    component: Daifuku
   }
 ]
 
