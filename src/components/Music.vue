@@ -6,6 +6,11 @@
         <p class="card-subtitle my-2">nowplaying</p>
         <p>{{ musicStatus.title }} / {{ musicStatus.artist }}</p>
         <p>{{ sleepTimer }}</p>
+        <button
+          class="btn btn-light"
+          v-on:click="getMusicStatus">
+            update
+        </button>
       </div>
     </div>
 
@@ -14,13 +19,8 @@
         <h6 class="card-title">操作盤</h6>
         <button
           class="btn btn-light"
-          v-on:click="getMusicStatus">
-            status
-        </button>
-        <button
-          class="btn btn-light"
           v-on:click="toggle">
-            toggle
+            {{ musicStatus.isPlaying | displayToggle }}
         </button>
         <button
           class="btn btn-light"
@@ -76,7 +76,8 @@ export default {
       musicStatus:{
         title: 'loading...',
         isSleepTimer: false,
-        volume: 50 
+        volume: 50 ,
+        isPlaying: false
       },
       queue: [],
     }
@@ -89,11 +90,17 @@ export default {
       return (this.musicStatus.isSleepTimer)?'寝':''
     }
   },
+  filters: {
+    displayToggle: function (isplaying) {
+      return (isplaying) ? 'pause' : 'play'
+    }
+  },
   methods: {
     setMusicStatus: function(data) {
       this.musicStatus = {
         title: data.title,
         artist: data.artist,
+        isPlaying: data.isplaying,
         isSleepTimer: data.isSleepTimer,
         volume: data.volume
       }
