@@ -1,13 +1,23 @@
 <template>
-  <div class="top">
-    <img alt="Vue logo" src="@/assets/logo.png">
-    <h1>{{ msg }}</h1>
+  <div class="container">
+    <div class="top">
+      <img alt="Vue logo" src="@/assets/logo.png">
+      <h1>{{ msg }}</h1>
+    </div>
+    <div class="mt-4">
+      <Player />
+    </div>
   </div>
 </template>
 
 <script>
+import Player from '@/components/mpd/Player.vue'
+
 export default {
   name: 'Top',
+  components: {
+    Player
+  },
   props: {
     msg: String
   }

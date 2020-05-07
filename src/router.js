@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Top from '@/components/Top'
-import Music from '@/components/Music'
-import Daifuku from '@/components/Daifuku'
+import Top from '@/components/pages/Top'
+import Music from '@/components/pages/Music'
+import Daifuku from '@/components/pages/Daifuku'
 
 Vue.use(VueRouter)
 
@@ -12,7 +12,7 @@ const routes = [
     path: '/',
     component: Top,
     props: {
-      msg: 'Welcome to Kashiwa w/router'
+      msg: 'Welcome to Kashiwa'
     }
   },
   {
