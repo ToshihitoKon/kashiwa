@@ -15,12 +15,15 @@
             crop
           </button>
         </div>
-        <ul>
-          <li v-for="song in queue" v-bind:key="song.title">
-            <button class="btn btn-light">
-              play
+        <ul class="list-group list-group-flush">
+          <li
+            v-for="song in queue"
+            v-bind:key="song.title"
+            class="list-group-item my-1">
+            <button class="btn btn-sm btn-info">
+              <font-awesome-icon :icon="icon.play" />
             </button>
-            {{ song.position }}: {{ song.title }}
+            <span class="ml-2">{{ song.title }}</span>
           </li>
         </ul>
       </div>
@@ -30,17 +33,24 @@
 
 <script>
 import Axios from 'axios'
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 import Player from '@/components/mpd/Player.vue'
 
 export default {
   data: function() {
     return {
       apiUrl: 'http://192.168.10.101:5000/api/v2',
-      queue: []
+      queue: [],
+      icon: {
+        play: faPlay
+      },
     }
   },
   components: {
-    Player
+    Player,
+    FontAwesomeIcon
   },
   methods: {
     getMusicQueueList: function () {
