@@ -2,26 +2,51 @@
   <div class="card my-2 mx-auto w-75">
     <div class="card-body mx-auto w-75">
       <div class="text-center">
-        <button
-          class="btn btn-light"
-          v-on:click="getMusicStatus">
-          <p class="card-subtitle my-2">nowplaying</p>
-          <p>{{ musicStatus.title }} / {{ musicStatus.artist }}</p>
-        </button>
+        <p class="card-subtitle my-2">nowplaying</p>
+        <p>{{ musicStatus.title }} / {{ musicStatus.artist }}</p>
+        <div class="text-center">
+          <button
+            class="btn btn-sm mx-1"
+            v-bind:class="[musicStatus.random? 'btn-info': 'btn-outline-info']">
+            random
+          </button>
+          <button
+            class="btn btn-sm mx-1"
+            v-bind:class="[musicStatus.single? 'btn-info': 'btn-outline-info']">
+            single
+          </button>
+          <button
+            class="btn btn-sm mx-1"
+            v-bind:class="[musicStatus.repeat? 'btn-info': 'btn-outline-info']">
+            repeat
+          </button>
+          <button
+            class="btn btn-sm mx-1"
+            v-bind:class="[musicStatus.consume? 'btn-info': 'btn-outline-info']">
+            consume
+          </button>
+        </div>
+        <div class="mt-3">
+          <button
+            class="btn btn-info"
+            v-on:click="getMusicStatus">
+            reload
+          </button>
+        </div>
       </div>
-      <div class="text-center">
+      <div class="text-center mt-3">
         <button
-          class="btn btn-light"
+          class="btn btn-info mx-1"
           v-on:click="toggle">
             {{ musicStatus.isPlaying | displayToggle }}
         </button>
         <button
-          class="btn btn-light"
+          class="btn btn-info mx-1"
           v-on:click="next">
             next
         </button>
         <button
-          class="btn btn-light"
+          class="btn btn-info mx-1"
           v-on:click="prev">
             prev
         </button>
@@ -48,7 +73,11 @@ export default {
         title: 'loading...',
         isSleepTimer: false,
         volume: 50 ,
-        isPlaying: false
+        isPlaying: false,
+        random: false,
+        single: false,
+        repeat: false,
+        consume: false
       }
     }
   },
@@ -71,7 +100,11 @@ export default {
         title: data.title,
         artist: data.artist,
         isPlaying: data.isplaying,
-        volume: data.volume
+        volume: data.volume,
+        random: data.random,
+        single: data.single,
+        repeat: data.repeat,
+        consume: data.consume
       }
     },
     getMusicStatus: function () {

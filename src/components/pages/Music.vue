@@ -4,20 +4,25 @@
     <div class="card my-2 mx-auto w-75">
       <div class="card-body">
         <h6 class="card-title">queue list</h6>
-        <button
-          class="btn btn-light"
-          v-on:click="getMusicQueueList">load
-        </button>
-        <details>
-          <ul>
-            <li v-for="song in queue" v-bind:key="song.title">
-              <button class="btn btn-light">
-                play
-              </button>
-              {{ song.position }}: {{ song.title }}
-            </li>
-          </ul>
-        </details>
+        <div>
+          <button
+            class="btn btn-light"
+            v-on:click="getMusicQueueList">
+            load
+          </button>
+          <button
+            class="btn btn-light">
+            crop
+          </button>
+        </div>
+        <ul>
+          <li v-for="song in queue" v-bind:key="song.title">
+            <button class="btn btn-light">
+              play
+            </button>
+            {{ song.position }}: {{ song.title }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
