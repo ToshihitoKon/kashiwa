@@ -75,19 +75,6 @@ export default {
     return {
       apiUrl: 'http://192.168.10.101:5000/api/v2',
       fetchStatusTimer: 0,
-      musicStatus:{
-        title: 'loading...',
-        isSleepTimer: false,
-        total: 0,
-        duration: 0,
-        playlistPosition: 0,
-        volume: 50 ,
-        isPlaying: false,
-        random: false,
-        single: false,
-        repeat: false,
-        consume: false
-      },
       icon: {
         play: faPlay,
         pause: faPause,
@@ -113,25 +100,14 @@ export default {
   },
   methods: {
     setMusicStatus: function(data) {
-      clearTimeout(this.fetchStatusTimer)
-
-      this.musicStatus = {
-        title: data.title,
-        artist: data.artist,
-        isPlaying: data.isplaying,
-        volume: data.volume,
-        random: data.random,
-        single: data.single,
-        repeat: data.repeat,
-        consume: data.consume,
-        total: data.total,
-        duration: data.duration,
-      }
-      
+      clearTimeout(state.fetchStatusTimer)
+      this.$store.commit('setPlayerState', data)
+      /*
       if(this.musicStatus.isPlaying){
         var interval = this.musicStatus.total - this.musicStatus.duration
         this.fetchStatusTimer = setTimeout(this.getMusicStatus, (interval + 2) * 1000)
       }
+      */
     },
     getMusicStatus: function () {
       Axios.get(`${this.apiUrl}/status`)

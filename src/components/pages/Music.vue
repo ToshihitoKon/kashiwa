@@ -36,7 +36,7 @@ import Axios from 'axios'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import Player from '@/components/mpd/Player.vue'
+import Player from '@/components/music/Player.vue'
 
 export default {
   data: function() {
