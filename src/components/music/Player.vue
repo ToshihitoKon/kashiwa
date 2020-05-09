@@ -74,7 +74,6 @@ export default {
   data: function() {
     return {
       apiUrl: 'http://192.168.10.101:5000/api/v2',
-      fetchStatusTimer: 0,
       icon: {
         play: faPlay,
         pause: faPause,
@@ -100,8 +99,8 @@ export default {
   },
   methods: {
     setMusicStatus: function(data) {
-      clearTimeout(state.fetchStatusTimer)
-      this.$store.commit('setPlayerState', data)
+      clearTimeout(this.$store.state.musicStore.fetchStatusTimer)
+      this.$store.commit('musicStore/setPlayerState', data)
       /*
       if(this.musicStatus.isPlaying){
         var interval = this.musicStatus.total - this.musicStatus.duration
