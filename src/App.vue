@@ -7,9 +7,11 @@
 
 <script>
 import Header from '@/components/Header.vue'
+import store from '@/store.js'
 
 export default {
   name: 'app',
+  store,
   components: {
     Header
   }

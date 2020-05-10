@@ -2,7 +2,7 @@
   <div class="card my-2 mx-auto w-75">
     <div class="card-body mx-auto w-75">
       <div class="text-center">
-        <p><strong>{{ musicStatus.title }} / {{ musicStatus.artist }}</strong></p>
+        <p><strong>{{ player.title }} / {{ player.artist }}</strong></p>
       </div>
       <div class="text-center mt-2">
         <button
@@ -24,31 +24,31 @@
       <div class="text-center mt-2">
         <button
           class="btn btn-sm mx-1"
-          v-bind:class="[musicStatus.random? 'btn-info': 'btn-outline-info']">
+          v-bind:class="[player.random? 'btn-info': 'btn-outline-info']">
           <font-awesome-icon :icon="icon.random" />
         </button>
         <button
           class="btn btn-sm mx-1"
-          v-bind:class="[musicStatus.single? 'btn-info': 'btn-outline-info']">
+          v-bind:class="[player.single? 'btn-info': 'btn-outline-info']">
           <font-awesome-icon :icon="icon.single" />
         </button>
         <button
           class="btn btn-sm mx-1"
-          v-bind:class="[musicStatus.repeat? 'btn-info': 'btn-outline-info']">
+          v-bind:class="[player.repeat? 'btn-info': 'btn-outline-info']">
           <font-awesome-icon :icon="icon.repeat" />
         </button>
         <button
           class="btn btn-sm mx-1"
-          v-bind:class="[musicStatus.consume? 'btn-info': 'btn-outline-info']">
+          v-bind:class="[player.consume? 'btn-info': 'btn-outline-info']">
           <font-awesome-icon :icon="icon.consume" />
         </button>
       </div>
       <div class="mx-auto mt-2 w-50">
-        <span>volume: {{ musicStatus.volume }}</span>
+        <span>volume: {{ volume }}</span>
         <input
           type="range"
           class="custom-range"
-          v-model="musicStatus.volume"
+          v-model="volume"
           v-on:change="postMusicVolume"
           min="0" max="99"/>
       </div>
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Axios from 'axios'
 import {
   faPlay,
@@ -74,6 +75,7 @@ export default {
   data: function() {
     return {
       apiUrl: 'http://192.168.10.101:5000/api/v2',
+      volume: 0,
       icon: {
         play: faPlay,
         pause: faPause,
@@ -89,24 +91,31 @@ export default {
   components: {
     FontAwesomeIcon,
   },
+  computed: {
+    ...mapState('music', {
+      player: state => state.player,
+      fetchTimer: state => state.fetchTimer
+    }),
+    togglePlay: function() {
+      return (this.player.isPlaying) ? this.icon.pause : this.icon.play
+    },
+  },
   created: function() {
     this.getMusicStatus()
   },
-  computed: {
-    togglePlay: function() {
-      return (this.musicStatus.isPlaying) ? this.icon.pause : this.icon.play
-    }
-  },
   methods: {
     setMusicStatus: function(data) {
-      clearTimeout(this.$store.state.musicStore.fetchStatusTimer)
-      this.$store.commit('musicStore/setPlayerState', data)
-      /*
-      if(this.musicStatus.isPlaying){
-        var interval = this.musicStatus.total - this.musicStatus.duration
-        this.fetchStatusTimer = setTimeout(this.getMusicStatus, (interval + 2) * 1000)
+      clearTimeout(this.fetchTimer)
+
+      this.$store.commit('music/setPlayerState', data)
+      this.volume = data.volume 
+
+      if(data.isplaying){
+        var interval = data.total - data.duration
+        var timerId = setTimeout(this.getMusicStatus, (interval + 2) * 1000)
+        console.log('setTimeout ', timerId)
+        this.$store.commit('music/setFetchTimer', timerId)
       }
-      */
     },
     getMusicStatus: function () {
       Axios.get(`${this.apiUrl}/status`)
@@ -134,7 +143,7 @@ export default {
     },
     postMusicVolume: function () {
       Axios.post(`${this.apiUrl}/volume`, {
-          volume: this.musicStatus.volume
+          volume: this.volume
       }).then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))

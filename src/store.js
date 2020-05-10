@@ -1,6 +1,7 @@
+import Vue from 'vue'
 import Vuex from 'vuex'
 
-const musicStore = {
+const music = {
   namespaced: true,
   state: {
     player: {
@@ -16,29 +17,34 @@ const musicStore = {
       repeat: false,
       consume: false,
     },
-    fetchStatusTimer: 0,
+    fetchTimer: 0,
   },
   mutations:{
     setPlayerState (state, playerState){
       state.player = {
-        title = playerState.title,
-        artist = playerState.artist,
-        isPlaying = playerState.isplaying,
-        volume = playerState.volume,
-        random = playerState.random,
-        single = playerState.single,
-        repeat = playerState.repeat,
-        consume = playerState.consume,
-        total = playerState.total,
-        duration = playerState.duration,
+        title: playerState.title,
+        artist: playerState.artist,
+        isPlaying: playerState.isplaying,
+        volume: playerState.volume,
+        random: playerState.random,
+        single: playerState.single,
+        repeat: playerState.repeat,
+        consume: playerState.consume,
+        total: playerState.total,
+        duration: playerState.duration,
       }
     },
+    setFetchTimer (state, timerId){
+      state.fetchTimer = timerId
+    }
   }
 }
 
+Vue.use(Vuex)
+
 const store = new Vuex.Store({
   modules: {
-    music: musicStore,
+    music,
   }
 })
 
