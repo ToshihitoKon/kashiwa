@@ -74,7 +74,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 export default {
   data: function() {
     return {
-      apiUrl: 'http://192.168.10.101:5000/api/v2',
       volume: 0,
       icon: {
         play: faPlay,
@@ -95,6 +94,9 @@ export default {
     ...mapState('music', {
       player: state => state.player,
       fetchTimer: state => state.fetchTimer
+    }),
+    ...mapState('constants', {
+      apiUrl: state => state.apiUrl,
     }),
     togglePlay: function() {
       return (this.player.isPlaying) ? this.icon.pause : this.icon.play

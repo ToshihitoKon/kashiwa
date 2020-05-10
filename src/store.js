@@ -1,6 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+const constants = {
+  namespaced: true,
+  state: {
+    apiUrl: 'http://192.168.10.101:5000/api/v2',
+  }
+}
+
 const music = {
   namespaced: true,
   state: {
@@ -61,6 +68,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
+    constants,
     music,
     queuelist,
   }

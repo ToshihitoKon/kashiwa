@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import Axios from 'axios'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -38,7 +38,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 export default {
   data: function() {
     return {
-      apiUrl: 'http://192.168.10.101:5000/api/v2',
       icon: {
         play: faPlay
       },
@@ -50,7 +49,10 @@ export default {
   computed: {
     ...mapGetters('queuelist', {
       queuelist: 'getSortedList'
-    })
+    }),
+    ...mapState('constants', {
+      apiUrl: state => state.apiUrl,
+    }),
   },
   methods: {
     getMusicQueueList: function () {
