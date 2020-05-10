@@ -40,11 +40,29 @@ const music = {
   }
 }
 
+const queuelist = {
+  namespaced: true,
+  state: {
+    list: [],
+  },
+  mutations: {
+    setList (state, list){
+      state.list = list
+    }
+  },
+  getters: {
+    getSortedList: state => {
+      return state.list.sort((a,b)=>{b.position - a.position})
+    }
+  }
+}
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
     music,
+    queuelist,
   }
 })
 
