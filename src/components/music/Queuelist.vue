@@ -14,7 +14,8 @@
         </button>
       </div>
     </div>
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush overflow-auto"
+      style="max-height:300px">
       <li
         v-for="song in queuelist"
         v-bind:key="song.title"
