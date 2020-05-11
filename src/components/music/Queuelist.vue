@@ -1,7 +1,7 @@
 <template>
   <div class="card my-2 mx-auto w-75">
     <div class="card-body">
-      <h6 class="card-title">queue list</h6>
+      <h5 class="card-title">queue list</h5>
       <div>
         <button
           class="btn btn-light"
@@ -9,36 +9,37 @@
           load
         </button>
         <button
-          class="btn btn-light">
+          class="btn btn-light"
+          v-on:click="crop">
           crop
         </button>
       </div>
+      <ul class="list-group list-group-flush overflow-auto"
+        style="height:300px">
+        <li
+          v-for="song in queuelist"
+          v-bind:key="song.title"
+          class="list-group-item">
+          <div class="float-left">
+            <span
+              v-if="song.position === playpos"
+              class="spinner-border">
+              <span class="sr-only">Playing</span>
+            </span>
+            <button
+              v-else
+              v-on:click="playPosition(song.position)"
+              class="btn btn-sm btn-info">
+              <font-awesome-icon :icon="icon.play" />
+            </button>
+          </div>
+          <div class="float-left h-100">
+            <span class="ml-2">{{ song.position }}</span>
+            <span class="ml-2">{{ song.title }}</span>
+          </div>
+        </li>
+      </ul>
     </div>
-    <ul class="list-group list-group-flush overflow-auto"
-      style="max-height:300px">
-      <li
-        v-for="song in queuelist"
-        v-bind:key="song.title"
-        class="list-group-item">
-        <div class="float-left">
-          <span
-            v-if="song.position === playpos"
-            class="spinner-border">
-            <span class="sr-only">Playing</span>
-          </span>
-          <button
-            v-else
-            v-on:click="playPosition(song.position)"
-            class="btn btn-sm btn-info">
-            <font-awesome-icon :icon="icon.play" />
-          </button>
-        </div>
-        <div class="float-left h-100">
-          <span class="ml-2">{{ song.position }}</span>
-          <span class="ml-2">{{ song.title }}</span>
-        </div>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -77,6 +78,12 @@ export default {
           this.$store.commit('queuelist/setList', res.data)
         }.bind(this))
     },
+    crop: function(){
+      Axios.post(`${this.apiUrl}/crop`)
+        .then(function(res){
+          this.$store.commit('queuelist/setList', res.data)
+        }.bind(this))
+    },
     playPosition: function(pos){
       Axios.post(`${this.apiUrl}/play/position`, {
           position: pos,
@@ -85,7 +92,7 @@ export default {
           this.$store.commit('music/setPlayerState', res.data)
           this.getMusicQueueList()
         }.bind(this))
-    }
+    },
   }
 }
 </script>
