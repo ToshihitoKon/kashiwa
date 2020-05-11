@@ -39,6 +39,7 @@ const music = {
         consume: playerState.consume,
         total: playerState.total,
         duration: playerState.duration,
+        playlistPosition: playerState.playlist_position,
       }
     },
     setFetchTimer (state, timerId){

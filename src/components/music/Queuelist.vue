@@ -18,12 +18,24 @@
       <li
         v-for="song in queuelist"
         v-bind:key="song.title"
-        class="list-group-item my-1">
-        <button class="btn btn-sm btn-info">
-          <font-awesome-icon :icon="icon.play" />
-        </button>
-        <span class="ml-2">{{ song.position }}</span>
-        <span class="ml-2">{{ song.title }}</span>
+        class="list-group-item">
+        <div class="float-left">
+          <span
+            v-if="song.position === playpos"
+            class="spinner-border">
+            <span class="sr-only">Playing</span>
+          </span>
+          <button
+            v-else
+            v-on:click="playPosition(song.position)"
+            class="btn btn-sm btn-info">
+            <font-awesome-icon :icon="icon.play" />
+          </button>
+        </div>
+        <div class="float-left h-100">
+          <span class="ml-2">{{ song.position }}</span>
+          <span class="ml-2">{{ song.title }}</span>
+        </div>
       </li>
     </ul>
   </div>
@@ -53,12 +65,24 @@ export default {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
     }),
+    ...mapState('music', {
+      playpos: state => state.player.playlistPosition,
+    }),
   },
   methods: {
     getMusicQueueList: function () {
       Axios.get(`${this.apiUrl}/playlist/current`)
         .then(function(res){
           this.$store.commit('queuelist/setList', res.data)
+        }.bind(this))
+    },
+    playPosition: function(pos){
+      Axios.post(`${this.apiUrl}/play/position`, {
+          position: pos,
+        })
+        .then(function(res){
+          this.$store.commit('music/setPlayerState', res.data)
+          this.getMusicQueueList()
         }.bind(this))
     }
   }
