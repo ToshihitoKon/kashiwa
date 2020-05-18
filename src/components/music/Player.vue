@@ -1,6 +1,6 @@
 <template>
-  <div class="card my-2 mx-auto w-75">
-    <div class="card-body mx-auto w-75">
+  <div class="card my-2 mx-auto">
+    <div class="card-body">
       <div class="text-center">
         <p><strong>{{ player.title }} / {{ player.artist }}</strong></p>
       </div>
@@ -43,7 +43,7 @@
           <font-awesome-icon :icon="icon.consume" />
         </button>
       </div>
-      <div class="mx-auto mt-2 w-50">
+      <div class="mt-2 mx-auto" style="max-width:500px">
         <span>volume: {{ volume }}</span>
         <input
           type="range"

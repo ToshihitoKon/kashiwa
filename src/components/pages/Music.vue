@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container mt-4 w-75">
     <Chocho />
     <Player />
     <Queuelist />

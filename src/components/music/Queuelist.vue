@@ -1,6 +1,6 @@
 <template>
-  <div class="card my-2 mx-auto w-75">
-    <div class="card-body">
+  <div class="card my-2 mx-auto">
+    <div class="card-body mx-2">
       <h5 class="card-title">queue list</h5>
       <div>
         <button

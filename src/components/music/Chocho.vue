@@ -1,5 +1,5 @@
 <template>
-  <div class="card my-2 mx-auto w-75">
+  <div class="card my-2 mx-auto">
     <button
       class="btn btn-success"
       v-on:click="chocho">

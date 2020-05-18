@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container w-75">
     <div class="top">
       <img alt="Vue logo" src="@/assets/logo.png">
       <h1>{{ msg }}</h1>

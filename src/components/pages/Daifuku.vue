@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container mt-4 w-75">
     <div class="card my-2">
       <div class="card-body">
         <h6 class="card-title">daifuku</h6>

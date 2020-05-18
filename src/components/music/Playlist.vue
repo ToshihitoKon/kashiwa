@@ -1,5 +1,5 @@
 <template>
-  <div class="card my-2 mx-auto w-75">
+  <div class="card my-2 mx-auto">
     <div class="card-body">
       <h5 class="card-title">
         Playlist
