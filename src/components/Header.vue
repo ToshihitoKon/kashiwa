@@ -13,6 +13,9 @@
         <div>
           <router-link to='/daifuku' class="navbar-text">daifuku</router-link>
         </div>
+        <div>
+          <router-link to='/okonomi' class="navbar-text">okonomi</router-link>
+        </div>
       </div>
     </nav>
   </div>

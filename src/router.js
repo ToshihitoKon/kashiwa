@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Top from '@/components/pages/Top'
 import Music from '@/components/pages/Music'
 import Daifuku from '@/components/pages/Daifuku'
+import Okonomi from '@/components/pages/Okonomi'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,10 @@ const routes = [
   {
     path: '/daifuku',
     component: Daifuku
+  },
+  {
+    path: '/okonomi',
+    component: Okonomi
   }
 ]
 
