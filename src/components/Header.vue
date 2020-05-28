@@ -7,6 +7,7 @@
       <router-link to='/' class="navbar-brand">Kashiwa</router-link>
       <!-- メニュー -->
       <div id="sidebartoggle" class="collapse navbar-collapse">
+        <Player />
         <div>
           <router-link to='/music' class="navbar-text">music</router-link>
         </div>
@@ -20,3 +21,13 @@
     </nav>
   </div>
 </template>
+
+<script>
+import Player from '@/components/music/HeaderPlayer.vue'
+
+export default {
+  components: {
+    Player,
+  }
+}
+</script>

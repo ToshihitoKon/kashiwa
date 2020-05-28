@@ -27,6 +27,9 @@ export default {
       return (this.response.value == 0 )?'有効':'無効'
     }
   },
+  created: function() {
+    this.get_ziho()
+  },
   methods: {
     toggle_ziho: function(){
       Axios.post(`${this.apiUrl}/okonomi/toggle`,{
@@ -35,7 +38,16 @@ export default {
         .then(function(res){
           this.response = res.data
         }.bind(this))
-
+    },
+    get_ziho: function(){
+      Axios.get(`${this.apiUrl}/okonomi/get`,{
+        params: {
+            key: "ZIHOU"
+          }
+        })
+        .then(function(res){
+          this.response = res.data[0]
+        }.bind(this))
     }
   }
 }
