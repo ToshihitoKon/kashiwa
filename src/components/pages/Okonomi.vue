@@ -6,14 +6,22 @@
       toggle genkai
     </button>
     {{ zihouStatus }}
+    <Entries />
+    <NewEntryForm />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import Axios from 'axios'
+import Entries from '@/components/okonomi/Entries.vue'
+import NewEntryForm from '@/components/okonomi/NewEntryForm.vue'
 
 export default {
+  components: {
+    Entries,
+    NewEntryForm
+  },
   data: function(){
     return {
       response: {}
