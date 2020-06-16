@@ -7,16 +7,19 @@
       <div class="text-center mt-2">
         <button
           class="btn btn-info mx-1"
+          unselectable=on
           v-on:click="prev">
           <font-awesome-icon :icon="icon.prev" />
         </button>
         <button
           class="btn btn-info mx-1"
+          unselectable=on
           v-on:click="toggle">
           <font-awesome-icon :icon="togglePlay" />
         </button>
         <button
           class="btn btn-info mx-1"
+          unselectable=on
           v-on:click="next">
           <font-awesome-icon :icon="icon.next" />
         </button>
@@ -24,21 +27,29 @@
       <div class="text-center mt-2">
         <button
           class="btn btn-sm mx-1"
+          unselectable=on
+          v-on:click="changeMode('random')"
           v-bind:class="[player.random? 'btn-info': 'btn-outline-info']">
           <font-awesome-icon :icon="icon.random" />
         </button>
         <button
           class="btn btn-sm mx-1"
+          unselectable=on
+          v-on:click="changeMode('single')"
           v-bind:class="[player.single? 'btn-info': 'btn-outline-info']">
           <font-awesome-icon :icon="icon.single" />
         </button>
         <button
           class="btn btn-sm mx-1"
+          unselectable=on
+          v-on:click="changeMode('repeat')"
           v-bind:class="[player.repeat? 'btn-info': 'btn-outline-info']">
           <font-awesome-icon :icon="icon.repeat" />
         </button>
         <button
           class="btn btn-sm mx-1"
+          unselectable=on
+          v-on:click="changeMode('consume')"
           v-bind:class="[player.consume? 'btn-info': 'btn-outline-info']">
           <font-awesome-icon :icon="icon.consume" />
         </button>
@@ -140,6 +151,14 @@ export default {
     prev: function () {
       Axios.post(`${this.apiUrl}/prev`)
         .then(function(res){
+          this.setMusicStatus(res.data)
+        }.bind(this))
+    },
+    changeMode: function (mode) {
+      Axios.post(`${this.apiUrl}/mode`, {
+          'mode': mode,
+          'state': !this.player[mode]
+        }).then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))
     },
