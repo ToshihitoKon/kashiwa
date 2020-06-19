@@ -18,6 +18,9 @@
             <div>
               <router-link to='/okonomi' class="navbar-text">okonomi</router-link>
             </div>
+            <div>
+              <router-link to='/cookie' class="navbar-text">cookie</router-link>
+            </div>
           </div>
           <div class="col col-md-auto">
             <Player />

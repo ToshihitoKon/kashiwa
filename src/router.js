@@ -5,6 +5,7 @@ import Top from '@/components/pages/Top'
 import Music from '@/components/pages/Music'
 import Daifuku from '@/components/pages/Daifuku'
 import Okonomi from '@/components/pages/Okonomi'
+import Cookie from '@/components/pages/Cookie'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,10 @@ const routes = [
   {
     path: '/okonomi',
     component: Okonomi
+  },
+  {
+    path: '/cookie',
+    component: Cookie
   }
 ]
 
