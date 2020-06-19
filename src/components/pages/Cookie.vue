@@ -74,6 +74,9 @@
           <button
             v-on:click="uploadSavedata"
             >upload</button>
+          <button
+            v-on:click="clearSavedataForm"
+            >clear</button>
         </div>
         <div class="mt-2">
           stored data
@@ -158,10 +161,12 @@ export default {
     cpsSevenTimes: function() {
       const cps = this.cps
       this.cps = round(cps * 7)
+      this.frenzied = true
     },
     cpsSevenDivide: function() {
       const cps = this.cps
       this.cps = round(cps / 7)
+      this.frenzied = false
     },
     parseSavedata: function(savedata){
       const purebase64 = decodeURIComponent(savedata)
@@ -184,7 +189,11 @@ export default {
         })
         .then(function(res){
           this.stored = res.data.value
+          this.clearSavedataForm()
         }.bind(this))
+    },
+    clearSavedataForm: function() {
+      this.savedata = ''
     },
     fetchStoredSavedata: function(){
       Axios.get(`${this.apiUrl}/okonomi/get`, {
