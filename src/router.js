@@ -6,6 +6,7 @@ import Music from '@/components/pages/Music'
 import Daifuku from '@/components/pages/Daifuku'
 import Okonomi from '@/components/pages/Okonomi'
 import Cookie from '@/components/pages/Cookie'
+import Tako from '@/components/pages/Tako'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,10 @@ const routes = [
   {
     path: '/cookie',
     component: Cookie
+  },
+  {
+    path: '/tako',
+    component: Tako
   }
 ]
 
