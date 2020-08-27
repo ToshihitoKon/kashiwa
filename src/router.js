@@ -4,9 +4,9 @@ import VueRouter from 'vue-router'
 import Top from '@/components/pages/Top'
 import Music from '@/components/pages/Music'
 import Daifuku from '@/components/pages/Daifuku'
-import Okonomi from '@/components/pages/Okonomi'
-import Cookie from '@/components/pages/Cookie'
-import Tako from '@/components/pages/Tako'
+import Okonomi from '@/pages/Okonomi'
+import Cookie from '@/pages/Cookie'
+import Tako from '@/pages/Tako'
 
 Vue.use(VueRouter)
 
@@ -41,6 +41,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   base: process.env.BASE_URL,
   routes: routes
 })

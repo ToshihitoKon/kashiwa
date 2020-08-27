@@ -1,12 +1,14 @@
 <template>
-  <form
-    v-bind:action="path"
-    method="post"
-    enctype="multipart/form-data"
-  >
-    <input type="file" name="uploadFile">
-    <input type="submit" value="Upload">
-  </form>
+  <div>
+    <form
+      v-bind:action="path"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="uploadFile">
+      <input type="submit" value="Upload">
+    </form>
+  </div>
 </template>
 
 <script>
