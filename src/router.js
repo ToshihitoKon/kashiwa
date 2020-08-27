@@ -1,12 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Top from '@/components/pages/Top'
-import Music from '@/components/pages/Music'
-import Daifuku from '@/components/pages/Daifuku'
-import Okonomi from '@/pages/Okonomi'
-import Cookie from '@/pages/Cookie'
-import Tako from '@/pages/Tako'
+import Top from '@/pages/Top'
+
+import Music          from '@/pages/music/Music'
+import MusicList      from '@/pages/music/List'
+import MusicPlaylists from '@/pages/music/Playlists'
+import MusicSearch    from '@/pages/music/Search'
+
+import Daifuku from '@/pages/daifuku/Daifuku'
+import Okonomi from '@/pages/okonomi/Okonomi'
+import Cookie from '@/pages/cookie/Cookie'
+import Tako from '@/pages/tako/Tako'
 
 Vue.use(VueRouter)
 
@@ -21,6 +26,18 @@ const routes = [
   {
     path: '/music',
     component: Music
+  },
+  {
+    path: '/music/list',
+    component: MusicList
+  },
+  {
+    path: '/music/playlists',
+    component: MusicPlaylists
+  },
+  {
+    path: '/music/search',
+    component: MusicSearch
   },
   {
     path: '/daifuku',
