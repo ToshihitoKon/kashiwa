@@ -3,7 +3,7 @@
     <div>
       <Player />
       <Queuelist />
-      <Playlist />
+      <PlaylistSelectView />
     </div>
     <div>
       <div>
@@ -22,13 +22,13 @@
 <script>
 import Player from '@/components/music/Player.vue'
 import Queuelist from '@/components/music/Queuelist.vue'
-import Playlist from '@/components/music/Playlist.vue'
+import PlaylistSelectView from '@/components/music/PlaylistSelectView.vue'
 
 export default {
   components: {
     Player,
     Queuelist,
-    Playlist,
+    PlaylistSelectView,
   }
 }
 </script>
