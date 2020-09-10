@@ -4,8 +4,15 @@
       <img alt="Vue logo" src="@/assets/logo.png">
       <h1>{{ msg }}</h1>
     </div>
-    <div class="mt-4">
+    <div class="mt-4 text-right">
       <Player />
+      <router-link to='/music' class="btn btn-link">
+        music
+      </router-link>
+      <Player />
+      <router-link to='/music' class="btn btn-link">
+        okonomi
+      </router-link>
     </div>
   </div>
 </template>

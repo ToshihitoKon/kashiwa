@@ -4,7 +4,12 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebartoggle">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <router-link to='/' class="navbar-brand">Kashiwa</router-link>
+      <router-link to='/' class="navbar-brand">
+        <img alt="Vue logo"
+          style="max-height: 1em"
+          src="@/assets/logo.png">
+        Kashiwa
+      </router-link>
       <!-- メニュー -->
       <div id="sidebartoggle" class="collapse navbar-collapse">
         <div class="row">
@@ -25,8 +30,11 @@
               <router-link to='/tako' class="navbar-text">tako</router-link>
             </div>
           </div>
-          <div class="col col-md-auto">
+          <div class="col col-md-auto mx-auto">
             <Player />
+            <Ziho />
+          </div>
+          <div class="col col-3">
           </div>
         </div>
       </div>
@@ -36,10 +44,12 @@
 
 <script>
 import Player from '@/components/music/HeaderPlayer.vue'
+import Ziho from '@/components/okonomi/Ziho.vue'
 
 export default {
   components: {
     Player,
+    Ziho
   }
 }
 </script>
