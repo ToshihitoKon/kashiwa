@@ -53,6 +53,21 @@
           v-bind:class="[player.consume? 'btn-info': 'btn-outline-info']">
           <font-awesome-icon :icon="icon.consume" />
         </button>
+        <button
+          class="btn btn-sm mx-1"
+          unselectable=on
+          v-on:click="sleeptimer"
+          v-bind:class="[player.sleeptimer? 'btn-info': 'btn-outline-info']">
+          <font-awesome-icon :icon="icon.sleep" />
+        </button>
+        <button
+          class="btn btn-sm mx-1"
+          v-if="player.sleeptimer"
+          unselectable=on
+          v-on:click="sleeptimercancel"
+          v-bind:class="[player.sleeptimer? 'btn-info': 'btn-outline-info']">
+          <font-awesome-icon :icon="icon.sleepcancel" />
+        </button>
       </div>
       <div class="mt-2 mx-auto" style="max-width:500px">
         <span>volume: {{ volume }}</span>
@@ -79,6 +94,8 @@ import {
   faRedo,
   faStopCircle,
   faEraser,
+  faBed,
+  faWindowClose,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -95,6 +112,8 @@ export default {
         repeat: faRedo,
         single: faStopCircle,
         consume: faEraser,
+        sleep: faBed,
+        sleepcancel: faWindowClose,
       }
     }
   },
@@ -166,6 +185,18 @@ export default {
       Axios.post(`${this.apiUrl}/volume`, {
           volume: this.volume
       }).then(function(res){
+          this.setMusicStatus(res.data)
+        }.bind(this))
+    },
+    sleeptimer: function () {
+      Axios.post(`${this.apiUrl}/sleeptimer/reset`)
+        .then(function(res){
+          this.setMusicStatus(res.data)
+        }.bind(this))
+    },
+    sleeptimercancel: function () {
+      Axios.post(`${this.apiUrl}/sleeptimer/cancel`)
+        .then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))
     },

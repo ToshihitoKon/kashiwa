@@ -58,7 +58,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history', historyを有効にするとnginxをよしなにしないといけない
   base: process.env.BASE_URL,
   routes: routes
 })

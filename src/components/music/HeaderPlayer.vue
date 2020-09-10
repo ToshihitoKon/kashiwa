@@ -19,6 +19,12 @@
         v-on:click="next">
         <font-awesome-icon :icon="icon.next" />
       </button>
+      <button
+        class="btn btn-sm mx-1"
+        unselectable=on
+        v-bind:class="[player.sleeptimer? 'btn-info': 'btn-outline-info']">
+        <font-awesome-icon :icon="icon.sleep" />
+      </button>
     </div>
     <div class="mt-2 mx-auto" style="max-width:500px">
       <span>volume: {{ volume }}</span>
@@ -40,6 +46,7 @@ import {
   faPause,
   faStepForward,
   faStepBackward,
+  faBed,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -52,6 +59,7 @@ export default {
         pause: faPause,
         next: faStepForward,
         prev: faStepBackward,
+        sleep: faBed,
       }
     }
   },

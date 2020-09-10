@@ -9,7 +9,9 @@
       <router-link to='/music' class="btn btn-link">
         music
       </router-link>
-      <Player />
+      <div class="mt-2 text-center">
+        <Ziho />
+      </div>
       <router-link to='/music' class="btn btn-link">
         okonomi
       </router-link>
@@ -19,10 +21,12 @@
 
 <script>
 import Player from '@/components/music/Player.vue'
+import Ziho from '@/components/okonomi/Ziho.vue'
 
 export default {
   name: 'Top',
   components: {
+    Ziho,
     Player
   },
   props: {

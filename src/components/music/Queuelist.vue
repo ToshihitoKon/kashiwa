@@ -18,7 +18,7 @@
         style="height:300px">
         <li
           v-for="song in queuelist"
-          v-bind:key="song.title"
+          v-bind:key="song.position + song.title"
           class="list-group-item">
           <div class="float-left">
             <span

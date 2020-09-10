@@ -23,6 +23,7 @@ const music = {
       single: false,
       repeat: false,
       consume: false,
+      sleeptimer: false,
     },
     fetchTimer: 0,
   },
@@ -40,6 +41,7 @@ const music = {
         total: playerState.total,
         duration: playerState.duration,
         playlistPosition: playerState.playlist_position,
+        sleeptimer: playerState.sleeptimer,
       }
     },
     setFetchTimer (state, timerId){
