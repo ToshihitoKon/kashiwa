@@ -67,6 +67,44 @@ const queuelist = {
   }
 }
 
+const musiclist = {
+  namespaced: true,
+  state: {
+    data: {"loading":{}},
+    path: [],
+  },
+  mutations: {
+    setData (state, data){
+      state.data = data
+    },
+    setPath (state, path){
+      state.path = path
+    }
+  },
+  getters: {
+    getCurrentList: state => {
+      var itr = state.data
+      const retlist = [Object.keys(itr)]
+
+      state.path.some( item => {
+        var list = []
+        if (! (item in itr) ) {
+          return true
+        }
+
+        list = list.concat( Object.keys(itr[item]).filter(x => x != '_files') )
+        itr = itr[item]
+        if ("_files" in itr) {
+          list = list.concat( Object.values(itr['_files']) )
+        }
+        // 先読み
+        retlist.push(list)
+      })
+      return retlist
+    }
+  }
+}
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -74,6 +112,7 @@ const store = new Vuex.Store({
     constants,
     music,
     queuelist,
+    musiclist,
   }
 })
 

@@ -5,17 +5,21 @@
       持ってる音源一覧が出ます
       キュー追加、プレイリスト追加、タグ編集、検索など
     </pre>
+    <div class="btn btn-light" v-on:click="fetchAll">
+      押せ！
+    </div>
     <div class=container>
       <div class="row">
         <ul style="overflow-x: auto; white-space: nowrap">
 
           <PlaylistItem 
-            v-for="entry in entries"
-            :key="entry"
+            v-for="(entry,index) in list"
+            :key="index + entry"
             :entries="entry"
+            :index="index"
             />
-
         </ul>
+
       </div>
     </div>
   </div>
@@ -23,43 +27,34 @@
 
 <script>
 import PlaylistItem from '@/components/music/PlaylistItem'
+import { mapState, mapGetters } from 'vuex'
+import Axios from 'axios'
 
 export default {
   components: {
     PlaylistItem
   },
-  data: function() {
-    return {
-      entries: [
-        {
-          "夏川椎菜":{
-            selected: true
-          },
-          "DIALOGUE+":{},
-          "THE_IDOLM@STER":{}
-        },
-        {
-          "ログライン":{
-            selected: true
-          },
-          "Ep01":{}
-        },
-        {
-          "パレイド":{},
-          "ステテクレバー":{},
-          "ナイモノバカリ":{},
-          "イエローフラッグ":{},
-          "Gravity":{},
-          "キミトグライド":{},
-          "フワリ、コロリ、カラン、コロン":{},
-          "Daisy Days":{},
-          "チアミーチアユー":{},
-          "シマエバイイ":{},
-          "ラブリルブラ":{},
-          "グレープフルーツムーン":{},
-          "ファーストプロット":{}
-        }
-      ]
+  mounted: function () {
+    this.fetchAll()
+  },
+  computed: {
+    ...mapState('constants', {
+      apiUrl: state => state.apiUrl,
+    }),
+    ...mapState('musiclist', {
+      data: state => state.data,
+      path: state => state.path,
+    }),
+    ...mapGetters('musiclist', {
+      list: 'getCurrentList'
+    })
+  },
+  methods: {
+    fetchAll: function () {
+      Axios.get(`${this.apiUrl}/search/fetchall`)
+        .then(function(res){
+            this.$store.commit('musiclist/setData', res.data)
+        }.bind(this))
     }
   }
 }
