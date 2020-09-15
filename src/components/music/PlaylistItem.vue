@@ -5,7 +5,7 @@
         v-for="(entry, i) in entries"
         :key="index + i +  entry"
         class="list-group-item list-group-item-action"
-        :class="{ active:entry.selected }"
+        :class="{ active: isSelectedItem(entry) }"
         v-on:click="selectItem(entry)"
         href="#">
         {{ entry }}
@@ -33,6 +33,9 @@ export default {
       const c = this.path.slice(0,this.index)
       c.push(item)
       this.$store.commit('musiclist/setPath', c)
+    },
+    isSelectedItem: function(item) {
+      return this.path[this.index] == item
     }
   }
 }
