@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 const constants = {
   namespaced: true,
   state: {
-    apiUrl: 'http://192.168.10.101:5000/api/v2',
+    apiUrl: process.env.VUE_APP_API_URL,
   }
 }
 
