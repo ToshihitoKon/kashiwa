@@ -21,8 +21,10 @@
         class="col-sm">
         <div class="text-center">{{ file }}</div>
         <img
+          v-if="file != ''"
           class="img-fluid"
-          src="@/assets/tako_sample.png" alt="" />
+          :src="image_path(file)"
+          alt="" />
       </div>
     </div>
     <Uploader />
@@ -42,9 +44,7 @@ export default {
   data: function(){
     return {
       columns: 3,
-      files: [
-        "now loading..."
-      ]
+      files: ['']
     }
   },
   computed: {
@@ -66,6 +66,9 @@ export default {
         .then(function(res){
           this.files = res.data
         }.bind(this))
+    },
+    image_path: function(filename){
+      return [this.apiUrl,'tako','data','get',filename].join('/')
     }
   }
 }
