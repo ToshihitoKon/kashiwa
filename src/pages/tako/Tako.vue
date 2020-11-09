@@ -23,6 +23,7 @@
         <img
           v-if="file != ''"
           class="img-fluid"
+          style="height: 300px"
           :src="image_path(file)"
           alt="" />
       </div>
