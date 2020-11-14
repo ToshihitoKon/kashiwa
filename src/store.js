@@ -105,6 +105,23 @@ const musiclist = {
   }
 }
 
+const okonomi = {
+  namespaced: true,
+  state: {
+    entryform: {
+      group: "",
+      key: "",
+      value: ""
+    }
+  },
+  mutations: {
+    setEntryform (state, data){
+      state.entryform = data
+    },
+  }
+}
+
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -113,6 +130,7 @@ const store = new Vuex.Store({
     music,
     queuelist,
     musiclist,
+    okonomi,
   }
 })
 

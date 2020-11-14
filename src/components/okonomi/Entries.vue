@@ -20,6 +20,9 @@
             v-for="entry in entries"
             :key="entry.key"
             class="list-group-item">
+            <div
+              class="btn btn-light"
+              v-on:click="setEntryform(selectedGroup,entry.key,entry.value)">編集</div>
             <span class="badge badge-info">
               {{ entry.key }}
             </span>
@@ -78,6 +81,9 @@ export default {
         .then(function(res){
           this.entries = res.data
         }.bind(this))
+    },
+    setEntryform: function(group,key,value){
+      this.$store.commit('okonomi/setEntryform', {key: key, value: value, group:group})
     }
   }
 }

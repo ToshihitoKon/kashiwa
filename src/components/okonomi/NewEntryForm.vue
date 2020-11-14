@@ -36,17 +36,43 @@ import { mapState } from 'vuex'
 import Axios from 'axios'
 
 export default {
-  data: function() {
-    return {
-      group: '',
-      key: '',
-      value: '',
-    }
-  },
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
     }),
+    ...mapState('okonomi', {
+      entryform: state => state.entryform,
+    }),
+    group: {
+      get () {
+        return this.entryform.group
+      },
+      set (value) {
+        var form = this.entryform
+        form.group = value
+        this.$store.commit('okonomi/setEntryform', form)
+      }
+    },
+    key: {
+      get () {
+        return this.entryform.key
+      },
+      set (value) {
+        var form = this.entryform
+        form.key = value
+        this.$store.commit('okonomi/setEntryform', form)
+      }
+    },
+    value: {
+      get () {
+        return this.entryform.value
+      },
+      set (value) {
+        var form = this.entryform
+        form.value = value
+        this.$store.commit('okonomi/setEntryform', form)
+      }
+    }
   },
   methods: {
     regist: function() {
