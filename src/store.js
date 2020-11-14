@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 const constants = {
   namespaced: true,
   state: {
-    apiUrl: process.env.VUE_KASHIWA_API_URL,
+    apiUrl: process.env.VUE_APP_KASHIWA_API_URL,
   }
 }
 
