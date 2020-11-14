@@ -21,14 +21,15 @@
             :key="entry.key"
             class="list-group-item">
             <div
-              class="btn btn-light"
-              v-on:click="setEntryform(selectedGroup,entry.key,entry.value)">編集</div>
-            <span class="badge badge-info">
-              {{ entry.key }}
-            </span>
-            <span>
+              style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+              <span
+                class="btn btn-light"
+                v-on:click="setEntryform(selectedGroup,entry.key,entry.value)">編集</span>
+              <span class="badge badge-info">
+                {{ entry.key }}
+              </span>
               {{ entry.value }}
-            </span>
+            </div>
           </li>
         </ul>
       </div>
