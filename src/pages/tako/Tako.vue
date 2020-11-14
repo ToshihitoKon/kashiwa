@@ -19,11 +19,12 @@
         v-for="(file, i) in files_row"
         :key="index + i + file"
         class="col-sm">
-        <div class="text-center">{{ file }}</div>
+        <div
+          class="text-center"
+          >{{ file }}</div>
         <img
           v-if="file != ''"
           class="img-fluid"
-          style="height: 300px"
           :src="image_path(file)"
           alt="" />
       </div>
