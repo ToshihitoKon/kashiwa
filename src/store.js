@@ -101,6 +101,9 @@ const musiclist = {
         retlist.push(list)
       })
       return retlist
+    },
+    getCurrentPath: state => {
+      return state.path.join('/')
     }
   }
 }

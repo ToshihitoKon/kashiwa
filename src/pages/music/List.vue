@@ -5,11 +5,16 @@
       持ってる音源一覧が出ます
       キュー追加、プレイリスト追加、タグ編集、検索など
     </pre>
-    <div class="btn btn-light" v-on:click="fetchAll">
-      押せ！
+    <div>
+      <button
+        v-on:click="queueing(path)"
+        class="btn btn-light">
+        キューに入れる
+      </button>
+      {{ path }}
     </div>
     <div class=container>
-      <div class="row">
+      <div class="row" style="text-align">
         <ul style="overflow-x: auto; white-space: nowrap">
 
           <PlaylistItem 
@@ -46,7 +51,8 @@ export default {
       path: state => state.path,
     }),
     ...mapGetters('musiclist', {
-      list: 'getCurrentList'
+      list: 'getCurrentList',
+      path: 'getCurrentPath'
     })
   },
   methods: {
@@ -54,6 +60,12 @@ export default {
       Axios.get(`${this.apiUrl}/search/fetchall`)
         .then(function(res){
             this.$store.commit('musiclist/setData', res.data)
+        }.bind(this))
+    },
+    queueing: function (path) {
+      Axios.post(`${this.apiUrl}/queue/add`, {"path": path})
+        .then(function(res){
+            this.$store.commit('musiclist/setList', res.data)
         }.bind(this))
     }
   }
