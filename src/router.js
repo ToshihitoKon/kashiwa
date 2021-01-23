@@ -12,6 +12,7 @@ import Daifuku from '@/pages/daifuku/Daifuku'
 import Okonomi from '@/pages/okonomi/Okonomi'
 import Cookie from '@/pages/cookie/Cookie'
 import Tako from '@/pages/tako/Tako'
+import ScriptKicker from '@/pages/script_kicker/script_kicker'
 
 Vue.use(VueRouter)
 
@@ -54,6 +55,10 @@ const routes = [
   {
     path: '/tako',
     component: Tako
+  },
+  {
+    path: '/script_kicker',
+    component: ScriptKicker
   }
 ]
 

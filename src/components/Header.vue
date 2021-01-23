@@ -29,6 +29,9 @@
             <div>
               <router-link to='/tako' class="navbar-text">tako</router-link>
             </div>
+            <div>
+              <router-link to='/script_kicker' class="navbar-text">script_kicker</router-link>
+            </div>
           </div>
           <div class="col col-md-auto mx-auto">
             <Player />

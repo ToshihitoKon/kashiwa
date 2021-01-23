@@ -3,12 +3,12 @@
     <div>
       <Player />
       <Queuelist />
+      <div>
+        <router-link to='/music/list' class="btn btn-light">directories</router-link>
+      </div>
       <PlaylistSelectView />
     </div>
     <div>
-      <div>
-        <router-link to='/music/list' class="navbar-text">list</router-link>
-      </div>
       <div>
         <router-link to='/music/playlists' class="navbar-text">playlists</router-link>
       </div>
