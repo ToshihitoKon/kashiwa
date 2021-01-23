@@ -78,6 +78,15 @@
           v-on:change="postMusicVolume"
           min="0" max="99"/>
       </div>
+      <div class="text-center">
+        <a
+          target="_blank"
+          v-bind:href="nowplayingUrlEncodedText">
+          <p>
+          nowplaying
+          </p>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -114,7 +123,7 @@ export default {
         consume: faEraser,
         sleep: faBed,
         sleepcancel: faWindowClose,
-      }
+      },
     }
   },
   components: {
@@ -130,6 +139,12 @@ export default {
     }),
     togglePlay: function() {
       return (this.player.isPlaying) ? this.icon.pause : this.icon.play
+    },
+    nowplayingUrlEncodedText: function() {
+      return "https://twitter.com/intent/tweet?text=" +
+        encodeURIComponent(
+          this.player.title + " / " + this.player.artist +
+          "\n" + "#nowplaying")
     },
   },
   created: function() {
