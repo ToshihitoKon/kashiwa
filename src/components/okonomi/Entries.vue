@@ -54,6 +54,7 @@ export default {
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionError: state => state.toastOptionError,
     }),
   },
   created: function() {
@@ -72,6 +73,9 @@ export default {
         .then(function(res){
           this.groupList = res.data
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     getGroupEntries: function(group){
       Axios.get(`${this.apiUrl}/okonomi/group/get`, {
@@ -81,6 +85,9 @@ export default {
         })
         .then(function(res){
           this.entries = res.data
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     },
     setEntryform: function(group,key,value){

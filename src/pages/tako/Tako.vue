@@ -52,6 +52,7 @@ export default {
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionError: state => state.toastOptionError,
     }),
     files_split_row: function() {
       const chunked = _.chunk(this.files, this.columns)
@@ -67,6 +68,9 @@ export default {
       Axios.get(`${this.apiUrl}/tako/list`)
         .then(function(res){
           this.files = res.data
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     },
     image_path: function(filename){

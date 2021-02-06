@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Axios from 'axios'
 
 export default {
@@ -54,6 +55,11 @@ export default {
         stderr: ""
       }
     }
+  },
+  computed: {
+    ...mapState('constants', {
+      toastOptionError: state => state.toastOptionError,
+    })
   },
   methods: {
     set_result: function (data) {
@@ -68,6 +74,9 @@ export default {
         .then(function(res){
           this.set_result(res.data)
         }.bind(this)
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
       )
     },
     kashiwa_pull: function () {
@@ -75,6 +84,9 @@ export default {
         .then(function(res){
           this.set_result(res.data)
         }.bind(this)
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
       )
     }
   }

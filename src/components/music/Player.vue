@@ -136,6 +136,7 @@ export default {
     }),
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionError: state => state.toastOptionError,
     }),
     togglePlay: function() {
       return (this.player.isPlaying) ? this.icon.pause : this.icon.play
@@ -169,11 +170,17 @@ export default {
         .then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     toggle: function () {
       Axios.post(`${this.apiUrl}/toggle`)
         .then(function(res){
           this.setMusicStatus(res.data)
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     },
     next: function () {
@@ -181,11 +188,17 @@ export default {
         .then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     prev: function () {
       Axios.post(`${this.apiUrl}/prev`)
         .then(function(res){
           this.setMusicStatus(res.data)
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     },
     changeMode: function (mode) {
@@ -195,6 +208,9 @@ export default {
         }).then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     postMusicVolume: function () {
       Axios.post(`${this.apiUrl}/volume`, {
@@ -202,17 +218,26 @@ export default {
       }).then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     sleeptimer: function () {
       Axios.post(`${this.apiUrl}/sleeptimer/reset`)
         .then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     sleeptimercancel: function () {
       Axios.post(`${this.apiUrl}/sleeptimer/cancel`)
         .then(function(res){
           this.setMusicStatus(res.data)
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     },
   }

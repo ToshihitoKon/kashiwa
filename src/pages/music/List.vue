@@ -61,11 +61,17 @@ export default {
         .then(function(res){
             this.$store.commit('musiclist/setData', res.data)
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     queueing: function (path) {
       Axios.post(`${this.apiUrl}/queue/add`, {"path": path})
         .then(function(res){
             this.$store.commit('musiclist/setList', res.data)
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     }
   }

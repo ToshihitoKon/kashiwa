@@ -117,6 +117,7 @@ export default {
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionError: state => state.toastOptionError,
     }),
     canget: function() {
       var cps = this.cps
@@ -191,6 +192,9 @@ export default {
           this.stored = res.data.value
           this.clearSavedataForm()
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     clearSavedataForm: function() {
       this.savedata = ''
@@ -203,6 +207,9 @@ export default {
         })
         .then(function(res){
           this.stored = res.data[0].value
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     },
     copyClipboardStoredSavedata: function() {

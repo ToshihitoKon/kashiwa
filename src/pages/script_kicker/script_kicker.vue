@@ -34,6 +34,7 @@ export default {
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionError: state => state.toastOptionError,
     })
   },
   methods: {
@@ -43,6 +44,9 @@ export default {
         })
         .then(function(){
           this.result = this.formtext + "ええやん"
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     }
   }

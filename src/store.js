@@ -5,6 +5,12 @@ const constants = {
   namespaced: true,
   state: {
     apiUrl: process.env.VUE_APP_KASHIWA_API_URL,
+    toastOptionError: {
+      position: 'bottom-center',
+      duration: 4000,
+      type: 'error',
+      theme: 'bubble',
+    },
   }
 }
 

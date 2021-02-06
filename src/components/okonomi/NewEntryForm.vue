@@ -39,6 +39,7 @@ export default {
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionError: state => state.toastOptionError,
     }),
     ...mapState('okonomi', {
       entryform: state => state.entryform,
@@ -84,6 +85,9 @@ export default {
         .then(function(){
           this.key = ''
           this.value = ''
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     }
   }

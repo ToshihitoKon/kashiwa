@@ -66,6 +66,7 @@ export default {
     }),
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionError: state => state.toastOptionError,
     }),
     ...mapState('music', {
       playpos: state => state.player.playlistPosition,
@@ -77,11 +78,17 @@ export default {
         .then(function(res){
           this.$store.commit('queuelist/setList', res.data)
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     crop: function(){
       Axios.post(`${this.apiUrl}/crop`)
         .then(function(res){
           this.$store.commit('queuelist/setList', res.data)
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     },
     playPosition: function(pos){
@@ -91,6 +98,9 @@ export default {
         .then(function(res){
           this.$store.commit('music/setPlayerState', res.data)
           this.getMusicQueueList()
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     },
   }

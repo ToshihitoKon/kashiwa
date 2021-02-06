@@ -27,6 +27,7 @@ export default {
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionError: state => state.toastOptionError,
     }),
     zihoStatus: function(){
       return (this.response.value == 0 )?'有効':'無効'
@@ -43,6 +44,9 @@ export default {
         .then(function(res){
           this.response = res.data
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     get_ziho: function(){
       Axios.get(`${this.apiUrl}/okonomi/get`,{
@@ -52,6 +56,9 @@ export default {
         })
         .then(function(res){
           this.response = res.data[0]
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
     }
   }

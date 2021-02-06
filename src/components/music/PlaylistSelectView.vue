@@ -42,6 +42,7 @@ export default {
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionError: state => state.toastOptionError,
     }),
   },
   methods: {
@@ -50,6 +51,9 @@ export default {
         .then(function(res){
           this.playlists = res.data
         }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
+        }.bind(this))
     },
     selectPlaylist: function(name) {
       Axios.post(`${this.apiUrl}/playlist/select`,{
@@ -57,6 +61,9 @@ export default {
         })
         .then(function(res){
           this.$store.commit('queuelist/setList', res.data)
+        }.bind(this))
+        .catch(function(res){
+          this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
 
     }
