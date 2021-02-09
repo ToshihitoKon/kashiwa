@@ -39,6 +39,7 @@ export default {
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionSuccess: state => state.toastOptionSuccess,
       toastOptionError: state => state.toastOptionError,
     }),
     ...mapState('okonomi', {
@@ -85,6 +86,9 @@ export default {
         .then(function(){
           this.key = ''
           this.value = ''
+        }.bind(this))
+        .then(function(){
+          this.$toasted.show("success", this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
           this.$toasted.show(res, this.toastOptionError)

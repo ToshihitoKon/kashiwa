@@ -42,6 +42,7 @@ export default {
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionSuccess: state => state.toastOptionSuccess,
       toastOptionError: state => state.toastOptionError,
     }),
   },
@@ -61,6 +62,9 @@ export default {
         })
         .then(function(res){
           this.$store.commit('queuelist/setList', res.data)
+        }.bind(this))
+        .then(function(){
+          this.$toasted.show("success", this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
           this.$toasted.show(res, this.toastOptionError)

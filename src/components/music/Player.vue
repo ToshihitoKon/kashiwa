@@ -136,6 +136,7 @@ export default {
     }),
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionSuccess: state => state.toastOptionSuccess,
       toastOptionError: state => state.toastOptionError,
     }),
     togglePlay: function() {
@@ -208,6 +209,9 @@ export default {
         }).then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))
+        .then(function(){
+          this.$toasted.show("success", this.toastOptionSuccess)
+        }.bind(this))
         .catch(function(res){
           this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
@@ -227,6 +231,9 @@ export default {
         .then(function(res){
           this.setMusicStatus(res.data)
         }.bind(this))
+        .then(function(){
+          this.$toasted.show("success", this.toastOptionSuccess)
+        }.bind(this))
         .catch(function(res){
           this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
@@ -235,6 +242,9 @@ export default {
       Axios.post(`${this.apiUrl}/sleeptimer/cancel`)
         .then(function(res){
           this.setMusicStatus(res.data)
+        }.bind(this))
+        .then(function(){
+          this.$toasted.show("success", this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
           this.$toasted.show(res, this.toastOptionError)
