@@ -45,6 +45,8 @@ export default {
   computed: {
     ...mapState('constants', {
       apiUrl: state => state.apiUrl,
+      toastOptionSuccess: state => state.toastOptionSuccess,
+      toastOptionError: state => state.toastOptionError,
     }),
     ...mapState('musiclist', {
       data: state => state.data,
@@ -61,6 +63,9 @@ export default {
         .then(function(res){
             this.$store.commit('musiclist/setData', res.data)
         }.bind(this))
+        .then(function(){
+          this.$toasted.show("success", this.toastOptionSuccess)
+        }.bind(this))
         .catch(function(res){
           this.$toasted.show(res, this.toastOptionError)
         }.bind(this))
@@ -69,6 +74,9 @@ export default {
       Axios.post(`${this.apiUrl}/queue/add`, {"path": path})
         .then(function(res){
             this.$store.commit('musiclist/setList', res.data)
+        }.bind(this))
+        .then(function(){
+          this.$toasted.show("success", this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
           this.$toasted.show(res, this.toastOptionError)
