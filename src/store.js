@@ -6,13 +6,13 @@ const constants = {
   state: {
     apiUrl: process.env.VUE_APP_KASHIWA_API_URL,
     toastOptionSuccess: {
-      position: 'bottom-center',
+      position: 'top-center',
       duration: 1000,
       type: 'success',
       theme: 'bubble',
     },
     toastOptionError: {
-      position: 'bottom-center',
+      position: 'top-center',
       duration: 4000,
       type: 'error',
       theme: 'bubble',
