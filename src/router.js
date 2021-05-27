@@ -1,6 +1,3 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-
 import Top from '@/pages/Top'
 
 import Music          from '@/pages/music/Music'
@@ -14,9 +11,7 @@ import Cookie from '@/pages/cookie/Cookie'
 import Tako from '@/pages/tako/Tako'
 import Hidamari from '@/pages/hidamari/Hidamari'
 
-Vue.use(VueRouter)
-
-const routes = [
+export const routes = [
   {
     path: '/',
     component: Top,
@@ -26,7 +21,7 @@ const routes = [
   },
   {
     path: '/music',
-    component: Music
+    component: Music,
   },
   {
     path: '/music/list',
@@ -45,10 +40,6 @@ const routes = [
     component: Daifuku
   },
   {
-    path: '/okonomi',
-    component: Okonomi
-  },
-  {
     path: '/cookie',
     component: Cookie
   },
@@ -57,15 +48,12 @@ const routes = [
     component: Tako
   },
   {
+    path: '/okonomi',
+    component: Okonomi
+  },
+  {
     path: '/hidamari',
     component: Hidamari
   }
 ]
 
-const router = new VueRouter({
-  // mode: 'history', historyを有効にするとnginxをよしなにしないといけない
-  base: process.env.BASE_URL,
-  routes: routes
-})
-
-export default router

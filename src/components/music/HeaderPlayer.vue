@@ -7,23 +7,23 @@
       <button
         class="btn btn-info mx-1"
         v-on:click="prev">
-        <font-awesome-icon :icon="icon.prev" />
+        <span class="material-icons">skip_previous</span>
       </button>
       <button
         class="btn btn-info mx-1"
         v-on:click="toggle">
-        <font-awesome-icon :icon="togglePlay" />
+        <span class="material-icons">play_arrow</span>
       </button>
       <button
         class="btn btn-info mx-1"
         v-on:click="next">
-        <font-awesome-icon :icon="icon.next" />
+        <span class="material-icons">skip_next</span>
       </button>
       <button
         class="btn btn-sm mx-1"
         unselectable=on
         v-bind:class="[player.sleeptimer? 'btn-info': 'btn-outline-info']">
-        <font-awesome-icon :icon="icon.sleep" />
+        <span class="material-icons">alarm_on</span>
       </button>
     </div>
     <div class="mt-2 mx-auto" style="max-width:500px">
@@ -41,30 +41,12 @@
 <script>
 import { mapState } from 'vuex'
 import Axios from 'axios'
-import {
-  faPlay,
-  faPause,
-  faStepForward,
-  faStepBackward,
-  faBed,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
   data: function() {
     return {
       volume: 0,
-      icon: {
-        play: faPlay,
-        pause: faPause,
-        next: faStepForward,
-        prev: faStepBackward,
-        sleep: faBed,
-      }
     }
-  },
-  components: {
-    FontAwesomeIcon,
   },
   computed: {
     ...mapState('music', {
@@ -102,7 +84,7 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     toggle: function () {
@@ -111,7 +93,7 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     next: function () {
@@ -120,7 +102,7 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     prev: function () {
@@ -129,7 +111,7 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     postMusicVolume: function () {
@@ -139,7 +121,7 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
   }

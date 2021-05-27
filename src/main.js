@@ -1,15 +1,24 @@
-import Vue from 'vue'
+import { createApp } from 'vue';
 import App from '@/App'
-import router from '@/router'
-import store from '@/store.js'
-import Toasted from 'vue-toasted'
+import { modules } from '@/store'
+import Toaster from "@meforma/vue-toaster";
 
-Vue.config.productionTip = false
-Vue.use(Toasted)
+import { createRouter, createWebHashHistory } from 'vue-router'
+import { routes } from '@/router'
 
-new Vue({
-    router,
-    store,
-    el: '#app',
-    render: h => h(App)
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes
 })
+
+import { createStore }from 'vuex'
+
+const store = createStore({
+  modules
+})
+
+const app = createApp(App)
+app.use(Toaster)
+app.use(router)
+app.use(store)
+app.mount('#app')

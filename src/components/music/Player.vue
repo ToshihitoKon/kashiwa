@@ -9,19 +9,19 @@
           class="btn btn-info mx-1"
           unselectable=on
           v-on:click="prev">
-          <font-awesome-icon :icon="icon.prev" />
+        <span class="material-icons">skip_previous</span>
         </button>
         <button
           class="btn btn-info mx-1"
           unselectable=on
           v-on:click="toggle">
-          <font-awesome-icon :icon="togglePlay" />
+        <span class="material-icons">play_arrow</span>
         </button>
         <button
           class="btn btn-info mx-1"
           unselectable=on
           v-on:click="next">
-          <font-awesome-icon :icon="icon.next" />
+          <span class="material-icons">skip_next</span>
         </button>
       </div>
       <div class="text-center mt-2">
@@ -30,35 +30,35 @@
           unselectable=on
           v-on:click="changeMode('random')"
           v-bind:class="[player.random? 'btn-info': 'btn-outline-info']">
-          <font-awesome-icon :icon="icon.random" />
+          <span class="material-icons">shuffle</span>
         </button>
         <button
           class="btn btn-sm mx-1"
           unselectable=on
           v-on:click="changeMode('single')"
           v-bind:class="[player.single? 'btn-info': 'btn-outline-info']">
-          <font-awesome-icon :icon="icon.single" />
+          <span class="material-icons">stop</span>
         </button>
         <button
           class="btn btn-sm mx-1"
           unselectable=on
           v-on:click="changeMode('repeat')"
           v-bind:class="[player.repeat? 'btn-info': 'btn-outline-info']">
-          <font-awesome-icon :icon="icon.repeat" />
+          <span class="material-icons">repeat</span>
         </button>
         <button
           class="btn btn-sm mx-1"
           unselectable=on
           v-on:click="changeMode('consume')"
           v-bind:class="[player.consume? 'btn-info': 'btn-outline-info']">
-          <font-awesome-icon :icon="icon.consume" />
+          <span class="material-icons">delete_sweep</span>
         </button>
         <button
           class="btn btn-sm mx-1"
           unselectable=on
           v-on:click="sleeptimer"
           v-bind:class="[player.sleeptimer? 'btn-info': 'btn-outline-info']">
-          <font-awesome-icon :icon="icon.sleep" />
+          <span class="material-icons">alarm_on</span>
         </button>
         <button
           class="btn btn-sm mx-1"
@@ -66,7 +66,7 @@
           unselectable=on
           v-on:click="sleeptimercancel"
           v-bind:class="[player.sleeptimer? 'btn-info': 'btn-outline-info']">
-          <font-awesome-icon :icon="icon.sleepcancel" />
+          <span class="material-icons">alarm_off</span>
         </button>
       </div>
       <div class="mt-2 mx-auto" style="max-width:500px">
@@ -94,40 +94,12 @@
 <script>
 import { mapState } from 'vuex'
 import Axios from 'axios'
-import {
-  faPlay,
-  faPause,
-  faStepForward,
-  faStepBackward,
-  faRandom,
-  faRedo,
-  faStopCircle,
-  faEraser,
-  faBed,
-  faWindowClose,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
   data: function() {
     return {
       volume: 0,
-      icon: {
-        play: faPlay,
-        pause: faPause,
-        next: faStepForward,
-        prev: faStepBackward,
-        random: faRandom,
-        repeat: faRedo,
-        single: faStopCircle,
-        consume: faEraser,
-        sleep: faBed,
-        sleepcancel: faWindowClose,
-      },
     }
-  },
-  components: {
-    FontAwesomeIcon,
   },
   computed: {
     ...mapState('music', {
@@ -172,7 +144,7 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     toggle: function () {
@@ -181,7 +153,7 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     next: function () {
@@ -190,7 +162,7 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     prev: function () {
@@ -199,7 +171,7 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     changeMode: function (mode) {
@@ -210,10 +182,10 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .then(function(){
-          this.$toasted.show("success", this.toastOptionSuccess)
+          this.$toast.show("success", this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     postMusicVolume: function () {
@@ -223,7 +195,7 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     sleeptimer: function () {
@@ -232,10 +204,10 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .then(function(){
-          this.$toasted.show("success", this.toastOptionSuccess)
+          this.$toast.show("success", this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     sleeptimercancel: function () {
@@ -244,10 +216,10 @@ export default {
           this.setMusicStatus(res.data)
         }.bind(this))
         .then(function(){
-          this.$toasted.show("success", this.toastOptionSuccess)
+          this.$toast.show("success", this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
   }

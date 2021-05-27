@@ -1,21 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 
 const constants = {
   namespaced: true,
   state: {
     apiUrl: process.env.VUE_APP_KASHIWA_API_URL,
     toastOptionSuccess: {
-      position: 'top-center',
-      duration: 1000,
       type: 'success',
-      theme: 'bubble',
+      position: 'bottom',
+      duration: 1000,
     },
     toastOptionError: {
-      position: 'top-center',
-      duration: 4000,
       type: 'error',
-      theme: 'bubble',
+      position: 'bottom',
+      duration: 4000,
     },
   }
 }
@@ -137,16 +133,11 @@ const okonomi = {
 }
 
 
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
-  modules: {
+export const modules = {
     constants,
     music,
     queuelist,
     musiclist,
     okonomi,
   }
-})
 
-export default store

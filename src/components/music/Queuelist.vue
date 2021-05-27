@@ -30,7 +30,7 @@
               v-else
               v-on:click="playPosition(song.position)"
               class="btn btn-sm btn-info">
-              <font-awesome-icon :icon="icon.play" />
+              <span class="material-icons">face</span>
             </button>
           </div>
           <div class="float-left h-100">
@@ -46,19 +46,11 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import Axios from 'axios'
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
   data: function() {
     return {
-      icon: {
-        play: faPlay
-      },
     }
-  },
-  components: {
-    FontAwesomeIcon
   },
   computed: {
     ...mapGetters('queuelist', {
@@ -80,7 +72,7 @@ export default {
           this.$store.commit('queuelist/setList', res.data)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     crop: function(){
@@ -89,10 +81,10 @@ export default {
           this.$store.commit('queuelist/setList', res.data)
         }.bind(this))
         .then(function(){
-          this.$toasted.show("success", this.toastOptionSuccess)
+          this.$toast.show("success", this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     playPosition: function(pos){
@@ -104,7 +96,7 @@ export default {
           this.getMusicQueueList()
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
   }

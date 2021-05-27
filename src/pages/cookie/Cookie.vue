@@ -31,7 +31,7 @@
             <span>最低貯クッキー</span>
           </div>
           <div>
-            <span> {{ obj | fix }}</span>
+            <span> {{ fix(obj) }}</span>
           </div>
         </div>
         <div>
@@ -39,7 +39,7 @@
             <span>最大FrenzyLucky</span>
           </div>
           <div>
-            <span>{{ canget | fix }}</span>
+            <span>{{ fix(canget) }}</span>
           </div>
         </div>
       </div>
@@ -61,13 +61,13 @@
           version: {{ currentSavedata.version }}
           </div>
           <div>
-          保存日: {{ currentSavedata.exportedAt | toJST }}
+          保存日: {{ toJST(currentSavedata.exportedAt) }}
           </div>
           <div>
-          最終転生: {{ currentSavedata.lastAscendedAt | toJST }}
+          最終転生: {{ toJST(currentSavedata.lastAscendedAt) }}
           </div>
           <div>
-          開始日: {{ currentSavedata.startedAt | toJST }}
+          開始日: {{ toJST(currentSavedata.startedAt) }}
           </div>
         </div>
         <div>
@@ -88,7 +88,7 @@
           v-model="stored"
           style="width:100%">
           <div>
-          保存日: {{ storedSavedata.exportedAt | toJST }}
+          保存日: {{ toJST(storedSavedata.exportedAt) }}
           </div>
         <button
           v-on:click="copyClipboardStoredSavedata"
@@ -147,7 +147,7 @@ export default {
       localStorage.cps = newCps
     }
   },
-  filters: {
+  methods: {
     fix: function(v) {
       return v.toLocaleString()
     },
@@ -156,9 +156,7 @@ export default {
         return ''
       }
       return v.toLocaleString({timeZone: 'Asia/Tokyo'})
-    }
-  },
-  methods: {
+    },
     cpsSevenTimes: function() {
       const cps = this.cps
       this.cps = round(cps * 7)

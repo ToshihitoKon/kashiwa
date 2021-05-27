@@ -64,10 +64,10 @@ export default {
             this.$store.commit('musiclist/setData', res.data)
         }.bind(this))
         .then(function(){
-          this.$toasted.show("success", this.toastOptionSuccess)
+          this.$toast.show("success", this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     },
     queueing: function (path) {
@@ -76,10 +76,10 @@ export default {
             this.$store.commit('musiclist/setList', res.data)
         }.bind(this))
         .then(function(){
-          this.$toasted.show("success", this.toastOptionSuccess)
+          this.$toast.show("success", this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show(res, this.toastOptionError)
+          this.$toast.show(res, this.toastOptionError)
         }.bind(this))
     }
   }
