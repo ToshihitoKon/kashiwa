@@ -1,15 +1,11 @@
 <template>
   <div class="container">
-    <button
+    <el-button
       v-on:click="toggle_ziho"
-      class="btn btn-light">
-      限界時報
-    </button>
-    <span
-      class="badge"
-      v-bind:class="[response.value == 1 ? 'badge-dark' : 'badge-danger']">
-      {{ zihoStatus }}
-    </span>
+      v-bind:type="[response.value == 1 ? '' : 'danger']"
+      round>
+      限界時報:{{ zihoStatus }}
+    </el-button>
   </div>
 </template>
 

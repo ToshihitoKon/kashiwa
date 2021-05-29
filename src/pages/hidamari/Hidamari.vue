@@ -51,10 +51,10 @@ export default {
     lightAPI: function(endpoint) {
       Axios.post(`${this.apiUrl}/hidamari/light/${endpoint}`, {})
         .then(function(res){
-          this.$toasted.show("success " + res.data.rate_remaining, this.toastOptionSuccess)
+          this.$toast.show("success " + res.data.rate_remaining, this.toastOptionSuccess)
         }.bind(this))
         .catch(function(res){
-          this.$toasted.show("failed " + res.data.rate_reset, this.toastOptionError)
+          this.$toast.show("failed " + res.data.rate_reset, this.toastOptionError)
         }.bind(this))
     }
   }
