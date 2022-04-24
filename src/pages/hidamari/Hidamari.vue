@@ -5,9 +5,24 @@
       部屋の電気とかモニタリングとか
     </div>
     <div
-      @click="lightAPI('switch')"
+      @click="lightAPI('preset_on')"
       class="btn btn-primary m-2">
-      オン/オフ
+      寒色プリセット
+    </div>
+    <div
+      @click="lightAPI('preset_warm')"
+      class="btn btn-primary m-2">
+      暖色プリセット
+    </div>
+    <div
+      @click="lightAPI('on')"
+      class="btn btn-primary m-2">
+      オン
+    </div>
+    <div
+      @click="lightAPI('off')"
+      class="btn btn-primary m-2">
+      オフ
     </div>
     <div
       @click="lightAPI('warm')"
