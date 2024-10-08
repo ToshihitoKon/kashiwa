@@ -10,7 +10,7 @@
   "dependencies": {
     "@meforma/vue-toaster": "^1.2.2",
     "axios": "^0.21.2",
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^5.0.0",
     "core-js": "^3.12.1",
     "jquery": "^3.6.0",
     "lodash": "^4.17.20",
